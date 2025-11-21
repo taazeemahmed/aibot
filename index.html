@@ -28,5 +28,21 @@
 
     <script src="script.js"></script>
 </body>
+<script>
+    const response = await fetch("/api/gemini", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ prompt: userText })
+    });
+
+    const data = await response.json();
+    console.log("API Response:", data); // VERY IMPORTANT FOR DEBUGGING
+
+    const botReply =
+        data?.candidates?.[0]?.content?.parts?.[0]?.text || "No response";
+
+</script>
 
 </html>
